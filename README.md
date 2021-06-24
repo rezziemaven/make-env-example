@@ -1,6 +1,6 @@
 # Make `.env.example`
 
-This is a simple Node-based script that makes an up-to-date `.env.example` file from your project's `.env` file when used. It will either create a new `.env.example` file or overwrite your existing `.env.example` file with the latest version of your `.env` file, copying only the variables without any values. It can be set as a CLI by copying, moving, or adding a symlink of the script to a directory in your `$PATH`.
+This is a simple Node-based script that makes an up-to-date `.env.example` file from your project's `.env` file when used. It will either create a new `.env.example` file or overwrite your existing `.env.example` file with the latest version of your `.env` file, copying only the variables without any values.
 
 _Example `.env` file_
 ```
@@ -9,12 +9,20 @@ DB_USER=root
 DB_PASSWORD=12345
 ```
 
-_Resulting `.env.example` file_
+_Resulting `.env.example` file using `env-eg` command_
 ```
 DB_HOST=
 DB_USER=
 DB_PASSWORD=
 ```
+
+This script can be set as a CLI by copying, moving, or adding a symlink of the script to a directory in your `$PATH` (see instructions below). You can then use the command
+
+```bash
+$  env-eg [custom-name]
+```
+
+to generate a `.env.example` file, or an example file for a custom-named `.env` file. For example, calling `env-eg production.env` will create a `production.env.example` file.
 
 ## Installation
 **NB:** These installation instructions work on Mac OS. The instructions may work in similar fashion on Linux or Windows, or you may need to use equivalent commands. You also need to have [Node.js](https://nodejs.org/en/) installed for this script to work.
