@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+
+const fs=require('fs')
+
+fs.readFile('./.env', (err, data) => {
+  if (err) console.error(err.message)
+  const dataToArray = data.toString().trim().split('\n')
+  cleanedEnvVars = dataToArray.map(prop => {
+    return prop.substring(0, prop.indexOf('=')+1)
+  }).join('\n')
+  const fileData = Buffer.from(cleanedEnvVars)
+  fs.writeFile('./.env.example', fileData, (err) => {
+    if(err) throw err;
+    console.log('.env.example succesfully created.')
+  })
+})
