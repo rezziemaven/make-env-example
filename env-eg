@@ -1,16 +1,21 @@
 #!/usr/bin/env node
+'use strict'
 
 const fs=require('fs')
 
-fs.readFile('./.env', (err, data) => {
+if(process.argv.length > 3) throw new Error('Too many arguments. Please enter one file name only.')
+
+const file = process.argv[2] || '.env'
+
+fs.readFile(file, (err, data) => {
   if (err) console.error(err.message)
   const dataToArray = data.toString().trim().split('\n')
-  cleanedEnvVars = dataToArray.map(prop => {
+  const cleanedEnvVars = dataToArray.map(prop => {
     return prop.substring(0, prop.indexOf('=')+1)
   }).join('\n')
   const fileData = Buffer.from(cleanedEnvVars)
-  fs.writeFile('./.env.example', fileData, (err) => {
+  fs.writeFile(`${file}.example`, fileData, (err) => {
     if(err) throw err;
-    console.log('.env.example successfully created.')
+    console.log(`${file}.example successfully created.`)
   })
 })
