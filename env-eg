@@ -11,6 +11,6 @@ fs.readFile('./.env', (err, data) => {
   const fileData = Buffer.from(cleanedEnvVars)
   fs.writeFile('./.env.example', fileData, (err) => {
     if(err) throw err;
-    console.log('.env.example succesfully created.')
+    console.log('.env.example successfully created.')
   })
 })
