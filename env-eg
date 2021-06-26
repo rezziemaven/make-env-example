@@ -11,6 +11,7 @@ fs.readFile(file, (err, data) => {
   if (err) console.error(err.message)
   const dataToArray = data.toString().trim().split('\n')
   const cleanedEnvVars = dataToArray.map(prop => {
+    if (prop.trim()[0] === '#') return prop //preserve comment
     return prop.substring(0, prop.indexOf('=')+1)
   }).join('\n')
   const fileData = Buffer.from(cleanedEnvVars)
